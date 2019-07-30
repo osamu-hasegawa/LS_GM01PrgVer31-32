@@ -3931,7 +3931,7 @@ send:
       Rec_of_Mold = Rec_of_Mold & ",  " & Format(Int(cc_time(2) / 60), "0") & ":" & Format(Int(cc_time(2)) Mod 60, "00")
       Rec_of_Mold = Rec_of_Mold & ",  " & Format(Int(cc_time(3) / 60), "0") & ":" & Format(Int(cc_time(3)) Mod 60, "00")
       diTime1 = diffTime(cc_time(3), cc_time(2))
-      Rec_of_Mold = Rec_of_Mold & ",  " & Format(Int(diTime1 + 0.5), "000") & "s, "
+      Rec_of_Mold = Rec_of_Mold & ",  " & Format(Int(diTime1 + 0.5), "000") & "s"
       Rec_of_Mold = Rec_of_Mold & ",  " & Format(cp_z, "000.000")
       Rec_of_Mold = Rec_of_Mold & ",  " & Format(Int(stime / 60), "0") & ":" & Format(Int(stime) Mod 60, "00")
       Rec_of_Mold = Rec_of_Mold & ",  " & Format(T_keisu(T_keisuCont(1) - 1), "0.000") & ",  " & Format(Z3_Hosei(T_keisuCont(1) - 1), "0.000")

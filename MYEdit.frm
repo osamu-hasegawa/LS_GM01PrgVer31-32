@@ -4379,6 +4379,8 @@ If katamax = 4 Then
 End If
 '
 DispCenter Me
+MYEdit.Caption = MYEdit.Caption + "     " + versionNo
+'
   lFlgDisp = False
   coxDtRead gcoxFldir & gcoxFlName
   If T_keisuCont(2) <> 0 Then T_keisuCont(1) = T_keisuCont(2)    'ポインターのbackup

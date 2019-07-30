@@ -291,7 +291,7 @@ Begin VB.Form PGM_Menu
    End
    Begin VB.Label Label1 
       BackColor       =   &H00E0E0E0&
-      Caption         =   "LS-31/32 Ver.190505e"
+      Caption         =   "LS-31/32 Ver.190505f"
       BeginProperty Font 
          Name            =   "ＭＳ Ｐゴシック"
          Size            =   12
@@ -832,7 +832,8 @@ Attribute VB_Exposed = False
 '            update: 32-V3.80506B  2013.10.07 s.f  肉厚補正　±0.05→+0.05/-0.5へ　変更
 '            update: LS31&32-V190505 2019.5.5 s.f  LS31-161213とLS32-80506Bの統合
 '                                                  型順表示、型No表示、型別の成形数カウントアップ,
-'                                                  30分枠延長'
+'                                                  30分枠延長, 4st/6st切り替え式
+'                                                  PGM_KTD.basのGlobal Const katamax As Integer = 6   '型数（成形機内のｽﾃｰｼｮﾝ数）6,4のいずれかのこと！　で切替
 '            update: LS31&32-V190505a 2019.5.7 s.f  表示バグ修正
 '            update: LS31&32-V190505b 2019.5.11 s.f  表示バグ修正 katamaxの値により、型順表示、MyEditの表示を消す
 '                                                   型順表示位置（プログラム内の場所）変更。高速ループ内から1回の成形開始時へ移動
@@ -840,6 +841,7 @@ Attribute VB_Exposed = False
 '            update: LS31&32-V190505c 2019.5.20 s.f  表示バグ修正、型順表示位置　”XR"へ戻す。成形室型有りidcflg(0)=0をカウントアップへ追加
 '            update: LS31&32-V190505d 2019.5.25 s.f  表示”、”を”、　”へ。スペース追加
 '            update: LS31&32-V190505e 2019.5.25 s.f  待ち時間入力制限　1000”を2400”へ変更
+'            update: LS31&32-V190505f 2019.6.07 s.f  "s,,  "のバグ修正（カンマが２個ある）, MYEdit.captionへVerNo追加
 '
 '------------------------------------------------------------------------------------------
 '
