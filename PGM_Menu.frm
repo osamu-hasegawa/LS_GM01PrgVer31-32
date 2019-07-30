@@ -291,7 +291,7 @@ Begin VB.Form PGM_Menu
    End
    Begin VB.Label Label1 
       BackColor       =   &H00E0E0E0&
-      Caption         =   "LS-31/32 Ver.190505"
+      Caption         =   "LS-31/32 Ver.190505a"
       BeginProperty Font 
          Name            =   "ＭＳ Ｐゴシック"
          Size            =   12
@@ -833,6 +833,7 @@ Attribute VB_Exposed = False
 '            update: LS31&32-V190505 2019.5.5 s.f  LS31-161213とLS32-80506Bの統合
 '                                                  型順表示、型No表示、型別の成形数カウントアップ,
 '                                                  30分枠延長'
+'            update: LS31&32-V190505a 2019.5.7 s.f  表示バグ修正
 '
 '------------------------------------------------------------------------------------------
 '
