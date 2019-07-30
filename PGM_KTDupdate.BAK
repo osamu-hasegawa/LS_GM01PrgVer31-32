@@ -1,0 +1,587 @@
+Attribute VB_Name = "PGM_KTD"
+
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+'    PGM_KTD
+'
+'         update: 2002.6.29  s.f   difftime
+'         update: 2002.10.5  s.f   difftime!
+'         update: 2002.12.03 s.f   RecDtsave0, RecDtsave 追加
+'         update: 2002.12.07 s.f   RecDtsave0(icnt) へ変更
+'         update: 2002.12.09 s.f   cooloff, heatoff 初期リセット　追加
+'
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+Option Explicit
+'
+Global InitDat!(0 To 50)               '保存データ
+Global InitStr$(0 To 50)
+'
+Global TPass!(0 To 2000)                '経過時間(秒)
+Global ZAxis!(0 To 2000)                '座標（Z-軸）
+Global Press!(0 To 2000)                '型締圧
+Global Templ!(0 To 2000)                '型温度
+Global Templd!(0 To 2000)               '型温度 下
+Global BrdFlg$
+Global StartTime!                       'Debug用
+Global GCnt0%                           '成形中データカウンタ
+Global GCnt1%
+Global Const H24Hr = 24 * 3600!         'Timer用 一日の秒数
+Global EmgFlg%                          '非常停止
+Global gOrgFlg%                         '原点復帰完了=TRUE
+'
+Global Err_ic%, Err_id%                 'ERROR
+Global pv_ch!        '/* マニュアル時の速度／位置切り換え値*/
+Global VccLw!                           '真空Zero
+Global VccHi!                           '真空到達点
+'
+Global FrmMenuFlg%                      'メニューから抜けるときfalse
+Global gM_sa!                           'メニューの速度制御の時の/* 設定圧力 */
+Global gM_p!                           'メニューの速度制御の時の/* 設定Ｐ値 */
+Global gM_lim!                           'メニューの速度制御の時の/* 設定リミット値 */
+Global ViewFlg%                         '画面番号
+Global Const gVelDirct! = -1            'S.Mの回転方向 (+1 or -1)
+Global Const gRev2Disp! = 24000         '1回転あたりのパルス数
+Global gTimeUpCnt%                      'タイムアップのカウンタ
+Global gVumFlg%                         '真空到達=1
+'--------------- レンズ成形機プログラム
+' 2001年3月
+'
+Global gcoxFlName$       'コントロールデータファイル名
+Global gcoxFldir$        'ディレクトリ
+'
+Global gCoxFlDtMax%
+Global gCoxDlDt(0 To 200) As String       'coxファイルの読んだままのデータ
+Global scom(0 To 200) As String       '
+Global sisub(0 To 200) As Long        '
+Global sjsub(0 To 200) As Long        '
+Global sksub(0 To 200) As Long        '
+Global hcomm(0 To 3) As String        '
+Global dcomm(0 To 200) As String      '
+Global seg_num(0 To 100) As Integer   'セグメント番号
+Global ic(0 To 100) As Integer        '制御方式
+Global pres(0 To 100) As Integer      'プレス圧力
+Global z(0 To 100) As Single          '目標位置
+Global vel(0 To 100) As Single        '速度
+Global t0(0 To 100) As Single         'Time Out
+Global p(0 To 100) As Single          'PID P
+Global ptime%                         '測定時間 分
+Global ytemp%                         '予備加熱 度
+'
+Global gDate$                         '結果グラフ日付け
+Global gTime$                         '結果グラフ時間
+Global gGphDtNum%                     '結果グラフデータ数
+Global gResFlName$                    '結果データファイル名
+Global gResFldir$                     'ディレクトリ
+Global FlNmRecDt$                     '成形データファイル名
+Global Rec_of_Mold$                   '成形データ　文字変数
+'
+Global gErrMsg$(0 To 1, 0 To 20)      'エラーメセージ
+'--------------- [QD61]LS21_S.C で定義してある変数
+Global atemp!(0 To 1801, 0 To 2)
+Global aposi!(0 To 1801)
+Global apre!(0 To 1801)
+Global roz!(2)               '　突当成形ﾊﾟﾗﾒｰﾀ　幅,時間
+Global ivd%, id_0%, id_1%, id_2%
+'--------------- 手動の位置制御速度設定用
+Global gHiSpeed!                      '手動の位置制御速度
+Global gLwSpeed!                      '手動の位置制御速度
+Global gDebugFlg%                     'debug =1 で ON
+
+Global gOrgIL As Boolean              '原点インターロック
+Global gOrgStartFlg As Boolean        '初回原点復帰完了フラグ
+
+Public Sub Main()
+  InitDtLoad
+  cfileLoad
+  coxDtRead gcoxFldir & gcoxFlName
+  coxDtSet
+  BoardInit
+  SetErrMsg         'アラームメッセージ
+  'DebugData         'Debug
+  gResFlName = "*.mpr"                  '結果データファイル名
+  gResFldir = App.path & "\..\data\"  'ディレクトリ
+  'ADMain.Show
+  InitStr(2) = "roz.con"                    'ロボットデータファイル名
+  InitStr(3) = App.path & "\..\robo\"       'ディレクトリ
+  'IOChk.Show '
+  ViewFlg = 1
+  gOrgFlg = False                       '原点復帰完了=TRUE
+  gTimeUpCnt = 0                    'タイムアップのカウンタ
+  gVumFlg = 0                       '真空到達=1
+  
+  VacuumOFF
+'
+  CoolOFF
+  HeatOFF
+'
+  ReadyFrm.Show
+  'PGM_Menu.Show
+End Sub
+
+Public Sub coxFlLoad()
+Dim fDir$, fname$, rflg%
+    
+    fname = gcoxFlName        'コントロールデータファイル名
+    fDir = gcoxFldir          'ディレクトリ
+    rflg = False
+    Call GenFile.SetCtrl("ファイル読込", "読込", "取消")
+    Call GenFile.SetFile(cLoad, fDir, fname, "*.cox")
+    GenFile.Show vbModal
+    Call GenFile.GetFile(rflg, fDir, fname)
+    Set GenFile = Nothing
+    If rflg Then
+      Screen.MousePointer = 11
+      '
+      coxDtRead fDir$ & fname
+      gcoxFlName = fname      'コントロールデータファイル名
+      gcoxFldir = fDir        'ディレクトリ
+      '
+      Screen.MousePointer = 0
+    End If
+End Sub
+
+Public Sub coxDtRead(fl$)
+Dim i%, fnum%, l%
+Dim dmy$, dt$, com$
+Dim iaf%, ja%
+Dim isub As Long
+Dim jsub As Long
+Dim ksub As Long
+
+  fnum = FreeFile
+  Open fl For Input As #fnum
+    For l = 0 To 7
+      Line Input #fnum, gCoxDlDt(l)
+    Next l
+    '
+    For l = 0 To 2: hcomm(l) = gCoxDlDt(l): Next l
+    l = 4: ptime = Val(gCoxDlDt(l))      '測定時間
+    l = 6: ytemp = Val(gCoxDlDt(l))      '予備加熱温度
+    l = 7
+    '軸駆動制御コマンドの読込
+    For i = 0 To 100
+      Line Input #fnum, dt
+      l = l + 1
+      gCoxDlDt(l) = dt
+      seg_num(i) = Val(Mid(dt, 1, 2))
+      ic(i) = Val(Mid(dt, 4, 4))
+      z(i) = Val(Mid(dt, 9, 9))
+      vel(i) = Val(Mid(dt, 19, 10))
+      pres(i) = Val(Mid(dt, 30, 8))
+      t0(i) = Val(Mid(dt, 39, 8))
+      p(i) = Val(Mid(dt, 48, 6))
+      If ic(i) = 9 Then Exit For
+    Next i
+    'データを読み取る
+    Input #fnum, dmy
+    l = l + 1
+    gCoxDlDt(l) = dmy
+    ja = 0
+    For i = 0 To 200
+      Line Input #fnum, dt
+      l = l + 1
+      gCoxDlDt(l) = dt
+      scom(i) = Mid(dt, 1, 2)
+      isub = Val(Mid(dt, 4, 5))
+      com = Left(scom(i), 1)
+      Select Case com
+      Case "S"
+        iaf = iaf + 1
+        jsub = Val(Mid(dt, 10, 5))
+        ksub = Val(Mid(dt, 16, 5))
+      Case "J"
+        iaf = iaf + 1
+      Case "P"
+        ja = ja + 1
+        If Right(scom(i), 1) = "R" And isub = 1 And ic(ja - 1) <> 2 Then iaf = iaf + 1
+        If Right(scom(i), 1) = "W" And isub = 4 And ic(ja - 1) <> 2 Then iaf = iaf + 1
+      Case "E"
+        Exit For
+      End Select
+      sisub(i) = isub
+      sjsub(i) = jsub
+      sksub(i) = ksub
+    Next i
+  Close fnum
+  gCoxFlDtMax = l
+  gGphDtMax = iaf       'データ数 元はiaf
+End Sub
+
+Public Sub InitDtLoad()
+Dim i%, fnum%
+Dim fDir$, flNm$
+  fnum = FreeFile
+  fDir = App.path & "\..\data\"
+  flNm = "PGM.ini"
+  Open fDir & flNm For Input As #fnum
+  For i = 0 To 50
+    Input #fnum, InitDat(i), InitStr(i)
+  Next i
+  Close #fnum
+  'gcoxFlName = InitStr(0)       'コントロールデータファイル名
+  'gcoxFldir = InitStr(1)        'ディレクトリ
+  'InitDat(10)=成形カウンタ
+  'InitDat(11)=成形カウンタトウタル
+End Sub
+Public Sub InitDtSave()
+Dim i%, fnum%
+Dim fDir$, flNm$
+  InitStr(0) = gcoxFlName    'コントロールデータファイル名
+  InitStr(1) = gcoxFldir     'ディレクトリ
+  fnum = FreeFile
+  fDir = App.path & "\..\Data\"
+  flNm = "PGM.ini"
+  Open fDir & flNm For Output As #fnum
+  For i = 0 To 50
+    Write #fnum, InitDat(i), InitStr(i)
+  Next i
+  Close #fnum
+End Sub
+Public Sub RecDtSave0(icnt)                     '成形データファイルの作成
+Dim j%, fnum%, sdt$
+Dim fDir$, flNm$
+  fnum = FreeFile
+  fDir = App.path & "\..\data\"
+  FlNmRecDt = "LS" & Mid(Date, 6, 2) & Mid(Date, 9, 2) & Format(Int(icnt), "0") & ".lsl"
+  sdt = " No.     Z3      Z4           ct1    ct2"
+  sdt = sdt & "         cc1     cc2    cc3"
+  sdt = sdt & "    cc3-2           cp          ﾀｸﾄ"
+  Open fDir & FlNmRecDt For Output As #fnum
+     Write #fnum, gcoxFlName & "   " & Date$ & "   " & Time$
+     Write #fnum, sdt
+  Close #fnum
+End Sub
+Public Sub RecDtSave(Rec_of_Mold$)            '成形データのセーブ
+Dim j%, fnum%
+Dim fDir$
+  fnum = FreeFile
+  fDir = App.path & "\..\data\"
+  Open fDir & FlNmRecDt For Append As #fnum
+     Write #fnum, Rec_of_Mold & "   " & Time$
+  Close #fnum
+End Sub
+
+Public Sub ResDtSave(i_s%, i%)
+Dim j%, fnum%
+Dim fDir$, flNm$
+  fnum = FreeFile
+  fDir = App.path & "\..\data\"
+  flNm = Mid(Date, 4, 2) & Mid(Date, 7, 2) & Trim(Str(i_s)) & "d.mpr"
+  Open fDir & flNm For Output As #fnum
+  Write #fnum, Date
+  Write #fnum, Time
+  Write #fnum, i
+  For j = 0 To i
+    Write #fnum, atemp(j, 0), atemp(j, 1), apre(j), aposi(j)
+  Next j
+  Close #fnum
+End Sub
+Public Sub ResDtLoad(fDir$, flNm$)
+Dim j%, fnum%, i%
+  fnum = FreeFile
+  Open fDir & flNm For Input As #fnum
+  Input #fnum, gDate
+  Input #fnum, gTime
+  Input #fnum, gGphDtNum
+  i = gGphDtNum
+  For j = 0 To i
+    Input #fnum, atemp(j, 0), atemp(j, 1), apre(j), aposi(j)
+  Next j
+  Close #fnum
+End Sub
+Public Sub ResFlLoad()
+Dim fDir$, fname$, rflg%
+    
+    fname = gResFlName        '結果データファイル名
+    fDir = gResFldir          'ディレクトリ
+    rflg = False
+    Call GenFile.SetCtrl("ファイル読込", "読込", "取消")
+    Call GenFile.SetFile(cLoad, fDir, fname, "*.mpr")
+    GenFile.Show vbModal
+    Call GenFile.GetFile(rflg, fDir, fname)
+    Set GenFile = Nothing
+    If rflg Then
+      Screen.MousePointer = 11
+      '
+      ResDtLoad fDir, fname
+      gResFlName = fname      'コントロールデータファイル名
+      gResFldir = fDir        'ディレクトリ
+      '
+      Screen.MousePointer = 0
+    End If
+End Sub
+Public Sub coxDtSet()
+Dim i%, fnum%, l%
+Dim dmy$, dt$, com$
+Dim iaf%, ja%
+Dim isub As Long
+Dim jsub As Long
+Dim ksub As Long
+
+    For l = 0 To 2: gCoxDlDt(l) = hcomm(l): Next l
+    l = 4: gCoxDlDt(l) = ptime    '測定時間
+    l = 6: gCoxDlDt(l) = ytemp    '予備加熱温度
+    l = 7
+    '軸駆動制御コマンドの読込
+    For i = 0 To 100
+      l = l + 1
+      dt = gCoxDlDt(l)
+      Mid(dt, 1, 2) = Right("  " & Str(seg_num(i)), 2)
+      Mid(dt, 4, 4) = Right("    " & Str(ic(i)), 4)
+      Mid(dt, 9, 9) = Right("         " & Format(z(i), "0.000"), 9)
+      Mid(dt, 19, 10) = Right("        " & Format(vel(i), "0.00"), 10)
+      Mid(dt, 30, 8) = Right("      " & Str(pres(i)), 8)
+      Mid(dt, 39, 8) = Right("      " & Format(t0(i), "0.0"), 8)
+      Mid(dt, 48, 6) = Right("      " & Format(p(i), "0.0"), 6)
+      '
+      gCoxDlDt(l) = dt
+      If ic(i) = 9 Then Exit For
+    Next i
+    'データを読み取る
+    l = l + 1
+    '
+    ja = 0
+    For i = 0 To 200
+      isub = sisub(i)
+      jsub = sjsub(i)
+      ksub = sksub(i)
+      l = l + 1
+      dt = gCoxDlDt(l)
+      scom(i) = Mid(dt, 1, 2)
+      Mid(dt, 4, 5) = Right("     " & Format(isub, "0"), 5)
+      com = Left(scom(i), 1)
+      Select Case com
+      Case "S"
+        Mid(dt, 10, 5) = Right("     " & Format(jsub, "0"), 5)
+        Mid(dt, 16, 5) = Right("     " & Format(ksub, "0"), 5)
+      Case "J"
+
+      Case "P"
+
+      Case "E"
+        Exit For
+      End Select
+      
+      gCoxDlDt(l) = dt
+    Next i
+  Close fnum
+End Sub
+Public Sub coxDtSave(fl$)
+Dim l%, fnum%
+  fnum = FreeFile
+  Open fl For Output As #fnum
+    For l = 0 To gCoxFlDtMax
+      Print #fnum, gCoxDlDt(l)
+    Next l
+  Close #fnum
+End Sub
+
+Private Sub DebugData()
+Dim i%
+Dim z!, p!, t!, x!
+'
+  For i = 0 To 2000
+    TPass(i) = i                '経過時間(秒)
+    ZAxis(i) = 50 + 40 * Sin(i / 57.325)              '座標（Z-軸）
+    Press(i) = i / 2000              '型締圧
+    Templ(i) = 500 + 100 * Sin(i / 57.325)       '型温度
+  Next i
+End Sub
+
+Public Sub BoardInit()
+Dim flg%
+    flg = 1
+    Select Case flg
+    Case 0
+        BrdFlg = "OFF"
+    Case 1
+        BrdFlg = "ON"
+        '--------------- D/A Board
+        DeviceDaName
+        'DvcDaOpen
+        '--------------- A/D Board
+        DvcAdOpen
+        DeviceAdName
+        '--------------- DIO Board
+        DvcDioOpen
+        '--------------- C-870V1
+        C870Open
+    End Select
+End Sub
+Public Sub BoardClose()
+Dim flg%
+    flg = 1
+    Select Case flg
+    Case 0
+        BrdFlg = "OFF"
+    Case 1
+        BrdFlg = "ON"
+        '--------------- D/A Board
+        'DeviceDaName
+        DvcDaClose
+        '--------------- A/D Board
+        DvcAdClose
+        'DeviceAdName
+        '--------------- DIO Board
+        'DvcDioClose
+        '--------------- C-870V1
+        C870Close
+    End Select
+End Sub
+
+Public Sub rozFileLoad()
+Dim i%, fnum%
+Dim fDir$, flNm$
+  fnum = FreeFile
+  fDir = InitStr(3)
+  flNm = InitStr(2)
+  Open fDir & flNm For Input As #fnum
+    Input #fnum, pv_ch                  '位置・速度モード切換点
+    Input #fnum, roz(0), roz(1)         '突当成形ﾊﾟﾗﾒｰﾀ　幅、時間 (時間max180）
+    Input #fnum, VccLw, VccHi           'ピラニゲージ用
+    Input #fnum, gM_sa, gM_p, gM_lim    '速度制御のパラメータ
+    Input #fnum, gHiSpeed, gLwSpeed     '手動の位置制御速度
+  Close #fnum
+'gM_sa!     'メニューの速度制御の時の/* 設定圧力 */
+'gM_p!      'メニューの速度制御の時の/* 設定Ｐ値 */
+'gM_lim!    'メニューの速度制御の時の/* 設定リミット値 */
+End Sub
+Public Sub rozFileSave()
+Dim i%, fnum%
+Dim fDir$, flNm$
+  fnum = FreeFile
+  fDir = InitStr(3)
+  flNm = InitStr(2)
+  Open fDir & flNm For Output As #fnum
+    Write #fnum, pv_ch
+    Write #fnum, roz(0), roz(1)        '突当成形ﾊﾟﾗﾒｰﾀ　幅、時間
+    Write #fnum, VccLw, VccHi
+    Write #fnum, gM_sa, gM_p, gM_lim
+    Write #fnum, gHiSpeed, gLwSpeed    '手動の位置制御速度
+  Close #fnum
+End Sub
+
+
+'Public Function PsTime%(wTm0!, wTm1!)  ' 02.6.29 使ってないのでｺﾒﾝﾄへ
+'Dim pTm!
+''
+'  If wTm0 > wTm1 Then pTm = pTm + H24Hr
+'  If wTm0 > wTm1 Then
+'    PsTime = True
+'  Else
+'    PsTime = False
+'  End If
+'End Function
+
+
+Public Function diffTime!(wTm1!, wTm0!)  '  '02.6.29  abs 外す   !入れる 10/4 sf
+Dim pTm!
+'-------------- ｛　wTm1（現在）－　wTm0(過去) ｝時間をSecで計算
+  If wTm0 > wTm1 Then
+    diffTime = wTm1 + H24Hr - wTm0
+  Else
+    diffTime = wTm1 - wTm0
+    'diffTime = Abs(wTm1 - wTm0)
+  End If
+End Function
+Public Function BitBSet(dl%, bit%)
+'
+  BitBSet = dl Or (2 ^ bit%)
+
+End Function
+Public Function BitBReSet(dl%, bit%)
+'
+  BitBReSet = dl And (&HFFFF - 2 ^ bit)
+
+End Function
+Public Function BitBTest(dl%, bit%)
+Dim sts%
+'
+  sts = 0
+  If dl And 2 ^ bit Then sts = 1  '&h1
+  BitBTest = sts
+End Function
+Public Sub cfileLoad()
+Dim i%, fnum%
+Dim fDir$, flNm$
+  fnum = FreeFile
+  fDir = App.path & "\..\cont\"
+  flNm = "cfile.con"
+  Open fDir & flNm For Input As #fnum
+    Input #fnum, gcoxFlName       'コントロールデータファイル名
+    Input #fnum, gcoxFldir        'ディレクトリ
+  Close #fnum
+End Sub
+Public Sub cfileSave()
+Dim i%, fnum%
+Dim fDir$, flNm$
+  fnum = FreeFile
+  fDir = App.path & "\..\cont\"
+  flNm = "cfile.con"
+  Open fDir & flNm For Output As #fnum
+    Write #fnum, gcoxFlName       'コントロールデータファイル名
+    Write #fnum, gcoxFldir        'ディレクトリ
+  Close #fnum
+End Sub
+Public Sub WaitSec(t As Single)
+'単位 秒
+Dim tm!, InTm!, NTm!
+  tm = 0
+  InTm = Timer
+  Do
+    NTm = Timer
+    DoEvents
+    If NTm >= InTm Then
+      tm = NTm - InTm
+    Else
+      tm = H24Hr - InTm + NTm
+    End If
+    'If gDurPauseFlg <> 0 Then Exit Do
+    If tm > t Then Exit Do
+  Loop
+End Sub
+
+Public Sub SetErrMsg()
+Dim ErrNo%, EmgArm%
+  EmgArm = 0          '非常停止
+  ErrNo = 0: gErrMsg$(EmgArm, ErrNo) = "System not ready" '
+  ErrNo = 1: gErrMsg$(EmgArm, ErrNo) = "非常停止" 'エラーメセージ
+  ErrNo = 2: gErrMsg$(EmgArm, ErrNo) = "本体非常停止"
+  ErrNo = 3: gErrMsg$(EmgArm, ErrNo) = "非常停止ＳＷ"
+  ErrNo = 4: gErrMsg$(EmgArm, ErrNo) = "高周波異常"
+  ErrNo = 5: gErrMsg$(EmgArm, ErrNo) = "高周波加熱機異常"
+  ErrNo = 6: gErrMsg$(EmgArm, ErrNo) = "サーボモータ異常"
+  ErrNo = 7: gErrMsg$(EmgArm, ErrNo) = "チャンバ圧異常"
+  ErrNo = 8: gErrMsg$(EmgArm, ErrNo) = "ペルジャ圧異常"
+  ErrNo = 9: gErrMsg$(EmgArm, ErrNo) = "高周波加熱制御異常"
+  EmgArm = 1          'アラーム
+  ErrNo = 1: gErrMsg$(EmgArm, ErrNo) = "ペルジャ未到達" 'エラーメセージ
+  ErrNo = 2: gErrMsg$(EmgArm, ErrNo) = "テーブル未到達"
+  ErrNo = 3: gErrMsg$(EmgArm, ErrNo) = "パレット３未到達"
+  ErrNo = 4: gErrMsg$(EmgArm, ErrNo) = "パレット４未到達"
+  ErrNo = 5: gErrMsg$(EmgArm, ErrNo) = "パレット２未到達"
+  ErrNo = 6: gErrMsg$(EmgArm, ErrNo) = "パレット１未到達"
+  ErrNo = 7: gErrMsg$(EmgArm, ErrNo) = "シリンダ７未到達"
+  ErrNo = 8: gErrMsg$(EmgArm, ErrNo) = "成形室温度異常"
+  ErrNo = 9: gErrMsg$(EmgArm, ErrNo) = "予熱トンネル温度異常"
+  ErrNo = 10: gErrMsg$(EmgArm, ErrNo) = "予熱室温度異常"
+  ErrNo = 11: gErrMsg$(EmgArm, ErrNo) = "放射温度計温度異常"
+  ErrNo = 12: gErrMsg$(EmgArm, ErrNo) = "真空未到達"
+End Sub
+Public Sub DispCenter(frmObj As Form)
+  Dim dmy As Long
+
+  If frmObj.WindowState <> 0 Then frmObj.WindowState = 0
+  dmy = Screen.Width - frmObj.Width
+  If 1 < dmy Then
+    frmObj.Left = dmy \ 2
+  Else
+    frmObj.Left = 0
+  End If
+  dmy = Screen.Height - frmObj.Height
+  If 1 < dmy Then
+    frmObj.Top = dmy \ 2
+  Else
+    frmObj.Top = 0
+  End If
+End Sub
