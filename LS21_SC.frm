@@ -2771,11 +2771,11 @@ st:
     If itc < T_keisuCont(0) Then
          Label4(itc).BackColor = T_keisuCol!(1)
          Label6(itc).BackColor = T_keisuCol!(1)
-         Label11(itc) = itc + 1
+         Label11(itc).Caption = kataNo(itc)
        Else
          Label4(itc).BackColor = T_keisuCol!(0)
          Label6(itc).BackColor = T_keisuCol!(0)
-         Label11(itc) = 0
+         Label11(itc).Caption = " "
     End If
     If (iflgKataTorF(itc) = False) Then
          Label4(itc).BackColor = T_keisuCol!(4)
@@ -3924,18 +3924,18 @@ send:
 '        InitDat(11)=成形回数（ショット数）
 '　　　　　型No表示追加＆csv化　　2019.5.5.
       Rec_of_Mold = Format(InitDat(11), "000")
-      Rec_of_Mold = Rec_of_Mold & ", " & kataNo(ikn) & ", " & Format(ShotSu(ikn), "0")
-      Rec_of_Mold = Rec_of_Mold & ", " & Format(z(3), "000.00")
-      Rec_of_Mold = Rec_of_Mold & ", " & Format(Int(ct_temp(0)), "000") & "℃, " & Format(Int(ct_temp(1)), "000") & "℃"
-      Rec_of_Mold = Rec_of_Mold & ", " & Format(Int(cc_time(1) / 60), "0") & ":" & Format(Int(cc_time(1)) Mod 60, "00")
-      Rec_of_Mold = Rec_of_Mold & ", " & Format(Int(cc_time(2) / 60), "0") & ":" & Format(Int(cc_time(2)) Mod 60, "00")
-      Rec_of_Mold = Rec_of_Mold & ", " & Format(Int(cc_time(3) / 60), "0") & ":" & Format(Int(cc_time(3)) Mod 60, "00")
+      Rec_of_Mold = Rec_of_Mold & ",  " & kataNo(ikn) & ",  " & Format(ShotSu(ikn), "0")
+      Rec_of_Mold = Rec_of_Mold & ",  " & Format(z(3), "000.00")
+      Rec_of_Mold = Rec_of_Mold & ",  " & Format(Int(ct_temp(0)), "000") & "℃,  " & Format(Int(ct_temp(1)), "000") & "℃"
+      Rec_of_Mold = Rec_of_Mold & ",  " & Format(Int(cc_time(1) / 60), "0") & ":" & Format(Int(cc_time(1)) Mod 60, "00")
+      Rec_of_Mold = Rec_of_Mold & ",  " & Format(Int(cc_time(2) / 60), "0") & ":" & Format(Int(cc_time(2)) Mod 60, "00")
+      Rec_of_Mold = Rec_of_Mold & ",  " & Format(Int(cc_time(3) / 60), "0") & ":" & Format(Int(cc_time(3)) Mod 60, "00")
       diTime1 = diffTime(cc_time(3), cc_time(2))
-      Rec_of_Mold = Rec_of_Mold & ", " & Format(Int(diTime1 + 0.5), "000") & "s,"
-      Rec_of_Mold = Rec_of_Mold & ", " & Format(cp_z, "000.000")
-      Rec_of_Mold = Rec_of_Mold & ", " & Format(Int(stime / 60), "0") & ":" & Format(Int(stime) Mod 60, "00")
-      Rec_of_Mold = Rec_of_Mold & ", " & Format(T_keisu(T_keisuCont(1) - 1), "0.000") & ", " & Format(Z3_Hosei(T_keisuCont(1) - 1), "0.000")
-      Rec_of_Mold = Rec_of_Mold & ", " & Format(avekatJ(T_keisuCont(1) - 1), "000") & ", " & Format(iHoonStopNo, "00")
+      Rec_of_Mold = Rec_of_Mold & ",  " & Format(Int(diTime1 + 0.5), "000") & "s, "
+      Rec_of_Mold = Rec_of_Mold & ",  " & Format(cp_z, "000.000")
+      Rec_of_Mold = Rec_of_Mold & ",  " & Format(Int(stime / 60), "0") & ":" & Format(Int(stime) Mod 60, "00")
+      Rec_of_Mold = Rec_of_Mold & ",  " & Format(T_keisu(T_keisuCont(1) - 1), "0.000") & ",  " & Format(Z3_Hosei(T_keisuCont(1) - 1), "0.000")
+      Rec_of_Mold = Rec_of_Mold & ",  " & Format(avekatJ(T_keisuCont(1) - 1), "000") & ",  " & Format(iHoonStopNo, "00")
       List1.AddItem Rec_of_Mold, 0                                                                                            ' ”、0”　追加　2004.8.18
         
       RecDtSave Rec_of_Mold

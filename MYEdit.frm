@@ -4619,7 +4619,8 @@ Dim j%
 ' ---------------- ‘Ò‚¿ŽžŠÔ
   For j = 0 To 4
     lK8 = 1
-    VScroll8(j).min = 1000 * lK8
+    VScroll8(j).min = 2400 * lK8
+'    VScroll8(j).min = 1000 * lK8
     VScroll8(j).max = 0 * lK8
     VScroll8(j).LargeChange = 10 * lK8
     VScroll8(j).SmallChange = 1 * lK8

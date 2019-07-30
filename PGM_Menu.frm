@@ -291,7 +291,7 @@ Begin VB.Form PGM_Menu
    End
    Begin VB.Label Label1 
       BackColor       =   &H00E0E0E0&
-      Caption         =   "LS-31/32 Ver.190505c"
+      Caption         =   "LS-31/32 Ver.190505e"
       BeginProperty Font 
          Name            =   "ＭＳ Ｐゴシック"
          Size            =   12
@@ -838,6 +838,8 @@ Attribute VB_Exposed = False
 '                                                   型順表示位置（プログラム内の場所）変更。高速ループ内から1回の成形開始時へ移動
 '                                                   Coxデータのディスク保存（毎回）
 '            update: LS31&32-V190505c 2019.5.20 s.f  表示バグ修正、型順表示位置　”XR"へ戻す。成形室型有りidcflg(0)=0をカウントアップへ追加
+'            update: LS31&32-V190505d 2019.5.25 s.f  表示”、”を”、　”へ。スペース追加
+'            update: LS31&32-V190505e 2019.5.25 s.f  待ち時間入力制限　1000”を2400”へ変更
 '
 '------------------------------------------------------------------------------------------
 '
@@ -955,8 +957,8 @@ Private Sub Form_Load()
   T_keisuCont(2) = 0                ' T係数　ﾎﾟｲﾝﾀｰのbackupｸﾘﾔ
   T_keisuCont(3) = 0                ' 型個数のbackupのｸﾘﾔ
    Timer1.Enabled = True
-  Command1(0).Enabled = False       '2002.10.17 KYOCERA
-  Command1(2).Enabled = False
+  command1(0).Enabled = False       '2002.10.17 KYOCERA
+  command1(2).Enabled = False
 End Sub
 '-------------------------------------------------------------
 'Private Sub ExecMemo(DDir$, flNm$)      ' 2006.5.19 PGM_KTD へ移動
@@ -1316,13 +1318,13 @@ Private Sub Timer2_Timer()
     If r_z > 0.1 Then
       OrgOFF
       Label2(5).Caption = ""
-      Command1(0).Enabled = False
-      Command1(2).Enabled = False
+      command1(0).Enabled = False
+      command1(2).Enabled = False
     Else
       OrgON
       Label2(5).Caption = "原点"
-      Command1(0).Enabled = True
-      Command1(2).Enabled = True
+      command1(0).Enabled = True
+      command1(2).Enabled = True
     End If
   End If
       
