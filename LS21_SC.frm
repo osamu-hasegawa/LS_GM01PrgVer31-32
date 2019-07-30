@@ -3,16 +3,16 @@ Begin VB.Form LS21_SC
    Appearance      =   0  'Ì×¯Ä
    BackColor       =   &H00C0C0C0&
    Caption         =   "˜A‘±¬Œ`"
-   ClientHeight    =   8535
-   ClientLeft      =   135
+   ClientHeight    =   8532
+   ClientLeft      =   132
    ClientTop       =   420
-   ClientWidth     =   11835
+   ClientWidth     =   11844
    ControlBox      =   0   'False
    FillColor       =   &H00C0C0C0&
    ForeColor       =   &H00800000&
    LinkTopic       =   "Form1"
-   ScaleHeight     =   8535
-   ScaleWidth      =   11835
+   ScaleHeight     =   8532
+   ScaleWidth      =   11844
    Begin VB.Frame Frame1 
       Caption         =   "Œ^‡"
       Height          =   1540
@@ -137,7 +137,7 @@ Begin VB.Form LS21_SC
       Caption         =   "5•ª’âŽ~"
       BeginProperty Font 
          Name            =   "‚l‚r ‚oƒSƒVƒbƒN"
-         Size            =   7.5
+         Size            =   7.8
          Charset         =   128
          Weight          =   700
          Underline       =   0   'False
@@ -157,7 +157,7 @@ Begin VB.Form LS21_SC
       Caption         =   "•Û‰·’âŽ~"
       BeginProperty Font 
          Name            =   "‚l‚r ‚oƒSƒVƒbƒN"
-         Size            =   7.5
+         Size            =   7.8
          Charset         =   128
          Weight          =   700
          Underline       =   0   'False
@@ -176,7 +176,7 @@ Begin VB.Form LS21_SC
       Caption         =   "GraphDataSave"
       BeginProperty Font 
          Name            =   "‚l‚r ‚oƒSƒVƒbƒN"
-         Size            =   7.5
+         Size            =   7.8
          Charset         =   128
          Weight          =   700
          Underline       =   0   'False
@@ -192,7 +192,7 @@ Begin VB.Form LS21_SC
    End
    Begin VB.ListBox List1 
       BackColor       =   &H00C0C0C0&
-      Height          =   780
+      Height          =   768
       Left            =   1920
       TabIndex        =   77
       Top             =   1080
@@ -218,7 +218,7 @@ Begin VB.Form LS21_SC
       Enabled         =   0   'False
       BeginProperty Font 
          Name            =   "‚l‚r ‚oƒSƒVƒbƒN"
-         Size            =   10.5
+         Size            =   10.8
          Charset         =   128
          Weight          =   700
          Underline       =   0   'False
@@ -238,7 +238,7 @@ Begin VB.Form LS21_SC
       Caption         =   "V ƒGƒfƒBƒ^"
       BeginProperty Font 
          Name            =   "‚l‚r ‚oƒSƒVƒbƒN"
-         Size            =   10.5
+         Size            =   10.8
          Charset         =   128
          Weight          =   700
          Underline       =   0   'False
@@ -266,8 +266,8 @@ Begin VB.Form LS21_SC
       ForeColor       =   &H80000008&
       Height          =   5500
       Left            =   1800
-      ScaleHeight     =   5475
-      ScaleWidth      =   8370
+      ScaleHeight     =   5472
+      ScaleWidth      =   8376
       TabIndex        =   8
       Top             =   1870
       Width           =   8400
@@ -380,7 +380,7 @@ Begin VB.Form LS21_SC
       Caption         =   "I—¹"
       BeginProperty Font 
          Name            =   "‚l‚r ‚oƒSƒVƒbƒN"
-         Size            =   10.5
+         Size            =   10.8
          Charset         =   128
          Weight          =   700
          Underline       =   0   'False
@@ -401,7 +401,7 @@ Begin VB.Form LS21_SC
       Caption         =   "Label12"
       BeginProperty Font 
          Name            =   "‚l‚r ‚oƒSƒVƒbƒN"
-         Size            =   10.5
+         Size            =   10.8
          Charset         =   128
          Weight          =   400
          Underline       =   0   'False
@@ -421,7 +421,7 @@ Begin VB.Form LS21_SC
       Caption         =   "Label12"
       BeginProperty Font 
          Name            =   "‚l‚r ‚oƒSƒVƒbƒN"
-         Size            =   10.5
+         Size            =   10.8
          Charset         =   128
          Weight          =   400
          Underline       =   0   'False
@@ -578,7 +578,7 @@ Begin VB.Form LS21_SC
       Caption         =   "  Z3•â³"
       BeginProperty Font 
          Name            =   "‚l‚r ‚oƒSƒVƒbƒN"
-         Size            =   7.5
+         Size            =   7.8
          Charset         =   128
          Weight          =   400
          Underline       =   0   'False
@@ -596,7 +596,7 @@ Begin VB.Form LS21_SC
       Caption         =   "  ‚sŒW”"
       BeginProperty Font 
          Name            =   "‚l‚r ‚oƒSƒVƒbƒN"
-         Size            =   7.5
+         Size            =   7.8
          Charset         =   128
          Weight          =   400
          Underline       =   0   'False
@@ -614,7 +614,7 @@ Begin VB.Form LS21_SC
       Caption         =   "Label6"
       BeginProperty Font 
          Name            =   "‚l‚r ‚oƒSƒVƒbƒN"
-         Size            =   8.25
+         Size            =   8.4
          Charset         =   128
          Weight          =   400
          Underline       =   0   'False
@@ -632,7 +632,7 @@ Begin VB.Form LS21_SC
       Caption         =   "Label6"
       BeginProperty Font 
          Name            =   "‚l‚r ‚oƒSƒVƒbƒN"
-         Size            =   8.25
+         Size            =   8.4
          Charset         =   128
          Weight          =   400
          Underline       =   0   'False
@@ -650,7 +650,7 @@ Begin VB.Form LS21_SC
       Caption         =   "Label6"
       BeginProperty Font 
          Name            =   "‚l‚r ‚oƒSƒVƒbƒN"
-         Size            =   8.25
+         Size            =   8.4
          Charset         =   128
          Weight          =   400
          Underline       =   0   'False
@@ -668,7 +668,7 @@ Begin VB.Form LS21_SC
       Caption         =   "Label6"
       BeginProperty Font 
          Name            =   "‚l‚r ‚oƒSƒVƒbƒN"
-         Size            =   8.25
+         Size            =   8.4
          Charset         =   128
          Weight          =   400
          Underline       =   0   'False
@@ -686,7 +686,7 @@ Begin VB.Form LS21_SC
       Caption         =   "Label6"
       BeginProperty Font 
          Name            =   "‚l‚r ‚oƒSƒVƒbƒN"
-         Size            =   8.25
+         Size            =   8.4
          Charset         =   128
          Weight          =   400
          Underline       =   0   'False
@@ -704,7 +704,7 @@ Begin VB.Form LS21_SC
       Caption         =   "Label6"
       BeginProperty Font 
          Name            =   "‚l‚r ‚oƒSƒVƒbƒN"
-         Size            =   8.25
+         Size            =   8.4
          Charset         =   128
          Weight          =   400
          Underline       =   0   'False
@@ -722,7 +722,7 @@ Begin VB.Form LS21_SC
       Caption         =   "Label6"
       BeginProperty Font 
          Name            =   "‚l‚r ‚oƒSƒVƒbƒN"
-         Size            =   8.25
+         Size            =   8.4
          Charset         =   128
          Weight          =   400
          Underline       =   0   'False
@@ -740,7 +740,7 @@ Begin VB.Form LS21_SC
       Caption         =   "Label6"
       BeginProperty Font 
          Name            =   "‚l‚r ‚oƒSƒVƒbƒN"
-         Size            =   8.25
+         Size            =   8.4
          Charset         =   128
          Weight          =   400
          Underline       =   0   'False
@@ -758,7 +758,7 @@ Begin VB.Form LS21_SC
       Caption         =   "Label6"
       BeginProperty Font 
          Name            =   "‚l‚r ‚oƒSƒVƒbƒN"
-         Size            =   8.25
+         Size            =   8.4
          Charset         =   128
          Weight          =   400
          Underline       =   0   'False
@@ -776,7 +776,7 @@ Begin VB.Form LS21_SC
       Caption         =   "Label6"
       BeginProperty Font 
          Name            =   "‚l‚r ‚oƒSƒVƒbƒN"
-         Size            =   8.25
+         Size            =   8.4
          Charset         =   128
          Weight          =   400
          Underline       =   0   'False
@@ -821,7 +821,7 @@ Begin VB.Form LS21_SC
       Caption         =   "Label4"
       BeginProperty Font 
          Name            =   "‚l‚r ‚oƒSƒVƒbƒN"
-         Size            =   8.25
+         Size            =   8.4
          Charset         =   128
          Weight          =   400
          Underline       =   0   'False
@@ -839,7 +839,7 @@ Begin VB.Form LS21_SC
       Caption         =   "Label4"
       BeginProperty Font 
          Name            =   "‚l‚r ‚oƒSƒVƒbƒN"
-         Size            =   8.25
+         Size            =   8.4
          Charset         =   128
          Weight          =   400
          Underline       =   0   'False
@@ -857,7 +857,7 @@ Begin VB.Form LS21_SC
       Caption         =   "Label4"
       BeginProperty Font 
          Name            =   "‚l‚r ‚oƒSƒVƒbƒN"
-         Size            =   8.25
+         Size            =   8.4
          Charset         =   128
          Weight          =   400
          Underline       =   0   'False
@@ -875,7 +875,7 @@ Begin VB.Form LS21_SC
       Caption         =   "Label4"
       BeginProperty Font 
          Name            =   "‚l‚r ‚oƒSƒVƒbƒN"
-         Size            =   8.25
+         Size            =   8.4
          Charset         =   128
          Weight          =   400
          Underline       =   0   'False
@@ -893,7 +893,7 @@ Begin VB.Form LS21_SC
       Caption         =   "Label4"
       BeginProperty Font 
          Name            =   "‚l‚r ‚oƒSƒVƒbƒN"
-         Size            =   8.25
+         Size            =   8.4
          Charset         =   128
          Weight          =   400
          Underline       =   0   'False
@@ -911,7 +911,7 @@ Begin VB.Form LS21_SC
       Caption         =   "Label4"
       BeginProperty Font 
          Name            =   "‚l‚r ‚oƒSƒVƒbƒN"
-         Size            =   8.25
+         Size            =   8.4
          Charset         =   128
          Weight          =   400
          Underline       =   0   'False
@@ -929,7 +929,7 @@ Begin VB.Form LS21_SC
       Caption         =   "Label4"
       BeginProperty Font 
          Name            =   "‚l‚r ‚oƒSƒVƒbƒN"
-         Size            =   8.25
+         Size            =   8.4
          Charset         =   128
          Weight          =   400
          Underline       =   0   'False
@@ -965,7 +965,7 @@ Begin VB.Form LS21_SC
       Caption         =   "Label4"
       BeginProperty Font 
          Name            =   "‚l‚r ‚oƒSƒVƒbƒN"
-         Size            =   8.25
+         Size            =   8.4
          Charset         =   128
          Weight          =   400
          Underline       =   0   'False
@@ -1141,7 +1141,7 @@ Begin VB.Form LS21_SC
       Caption         =   "ƒVƒ‡ƒbƒg”F"
       BeginProperty Font 
          Name            =   "‚l‚r ƒSƒVƒbƒN"
-         Size            =   9.75
+         Size            =   9.6
          Charset         =   128
          Weight          =   700
          Underline       =   0   'False
@@ -1162,7 +1162,7 @@ Begin VB.Form LS21_SC
       Caption         =   "ƒTƒCƒNƒ‹ƒ^ƒCƒ€F"
       BeginProperty Font 
          Name            =   "‚l‚r ƒSƒVƒbƒN"
-         Size            =   9.75
+         Size            =   9.6
          Charset         =   128
          Weight          =   700
          Underline       =   0   'False
@@ -1262,7 +1262,7 @@ Begin VB.Form LS21_SC
       Caption         =   "Label2"
       BeginProperty Font 
          Name            =   "‚l‚r ‚oƒSƒVƒbƒN"
-         Size            =   9.75
+         Size            =   9.6
          Charset         =   128
          Weight          =   700
          Underline       =   0   'False
@@ -1281,7 +1281,7 @@ Begin VB.Form LS21_SC
       Caption         =   "Label2"
       BeginProperty Font 
          Name            =   "‚l‚r ‚oƒSƒVƒbƒN"
-         Size            =   9.75
+         Size            =   9.6
          Charset         =   128
          Weight          =   700
          Underline       =   0   'False
@@ -1301,7 +1301,7 @@ Begin VB.Form LS21_SC
       Caption         =   "Label2"
       BeginProperty Font 
          Name            =   "‚l‚r ‚oƒSƒVƒbƒN"
-         Size            =   9.75
+         Size            =   9.6
          Charset         =   128
          Weight          =   700
          Underline       =   0   'False
@@ -1322,7 +1322,7 @@ Begin VB.Form LS21_SC
       Caption         =   "¬Œ`ó‘ÔF"
       BeginProperty Font 
          Name            =   "‚l‚r ƒSƒVƒbƒN"
-         Size            =   11.25
+         Size            =   11.4
          Charset         =   128
          Weight          =   700
          Underline       =   0   'False
@@ -1345,7 +1345,7 @@ Begin VB.Form LS21_SC
       Caption         =   "(•ª)"
       BeginProperty Font 
          Name            =   "‚l‚r ƒSƒVƒbƒN"
-         Size            =   10.5
+         Size            =   10.8
          Charset         =   128
          Weight          =   700
          Underline       =   0   'False
@@ -1367,7 +1367,7 @@ Begin VB.Form LS21_SC
       Caption         =   "Œo‰ßŽžŠÔ"
       BeginProperty Font 
          Name            =   "‚l‚r ƒSƒVƒbƒN"
-         Size            =   10.5
+         Size            =   10.8
          Charset         =   128
          Weight          =   700
          Underline       =   0   'False
@@ -1428,7 +1428,7 @@ Begin VB.Form LS21_SC
       Caption         =   "###"
       BeginProperty Font 
          Name            =   "‚l‚r ƒSƒVƒbƒN"
-         Size            =   10.5
+         Size            =   10.8
          Charset         =   128
          Weight          =   700
          Underline       =   0   'False
@@ -1449,7 +1449,7 @@ Begin VB.Form LS21_SC
       Caption         =   "###"
       BeginProperty Font 
          Name            =   "‚l‚r ƒSƒVƒbƒN"
-         Size            =   10.5
+         Size            =   10.8
          Charset         =   128
          Weight          =   700
          Underline       =   0   'False
@@ -1470,7 +1470,7 @@ Begin VB.Form LS21_SC
       Caption         =   "###"
       BeginProperty Font 
          Name            =   "‚l‚r ƒSƒVƒbƒN"
-         Size            =   10.5
+         Size            =   10.8
          Charset         =   128
          Weight          =   700
          Underline       =   0   'False
@@ -1491,7 +1491,7 @@ Begin VB.Form LS21_SC
       Caption         =   "###"
       BeginProperty Font 
          Name            =   "‚l‚r ƒSƒVƒbƒN"
-         Size            =   10.5
+         Size            =   10.8
          Charset         =   128
          Weight          =   700
          Underline       =   0   'False
@@ -1512,7 +1512,7 @@ Begin VB.Form LS21_SC
       Caption         =   "###"
       BeginProperty Font 
          Name            =   "‚l‚r ƒSƒVƒbƒN"
-         Size            =   10.5
+         Size            =   10.8
          Charset         =   128
          Weight          =   700
          Underline       =   0   'False
@@ -1533,7 +1533,7 @@ Begin VB.Form LS21_SC
       Caption         =   "###"
       BeginProperty Font 
          Name            =   "‚l‚r ƒSƒVƒbƒN"
-         Size            =   10.5
+         Size            =   10.8
          Charset         =   128
          Weight          =   700
          Underline       =   0   'False
@@ -1571,7 +1571,7 @@ Begin VB.Form LS21_SC
       Caption         =   "Œ^‰·“x"
       BeginProperty Font 
          Name            =   "‚l‚r ƒSƒVƒbƒN"
-         Size            =   10.5
+         Size            =   10.8
          Charset         =   128
          Weight          =   700
          Underline       =   0   'False
@@ -1593,7 +1593,7 @@ Begin VB.Form LS21_SC
       Caption         =   "(Ž)"
       BeginProperty Font 
          Name            =   "‚l‚r ƒSƒVƒbƒN"
-         Size            =   10.5
+         Size            =   10.8
          Charset         =   128
          Weight          =   700
          Underline       =   0   'False
@@ -1671,7 +1671,7 @@ Begin VB.Form LS21_SC
       Caption         =   "####"
       BeginProperty Font 
          Name            =   "‚l‚r ƒSƒVƒbƒN"
-         Size            =   10.5
+         Size            =   10.8
          Charset         =   128
          Weight          =   700
          Underline       =   0   'False
@@ -1692,7 +1692,7 @@ Begin VB.Form LS21_SC
       Caption         =   "###"
       BeginProperty Font 
          Name            =   "‚l‚r ƒSƒVƒbƒN"
-         Size            =   10.5
+         Size            =   10.8
          Charset         =   128
          Weight          =   700
          Underline       =   0   'False
@@ -1713,7 +1713,7 @@ Begin VB.Form LS21_SC
       Caption         =   "###"
       BeginProperty Font 
          Name            =   "‚l‚r ƒSƒVƒbƒN"
-         Size            =   10.5
+         Size            =   10.8
          Charset         =   128
          Weight          =   700
          Underline       =   0   'False
@@ -1734,7 +1734,7 @@ Begin VB.Form LS21_SC
       Caption         =   "###"
       BeginProperty Font 
          Name            =   "‚l‚r ƒSƒVƒbƒN"
-         Size            =   10.5
+         Size            =   10.8
          Charset         =   128
          Weight          =   700
          Underline       =   0   'False
@@ -1755,7 +1755,7 @@ Begin VB.Form LS21_SC
       Caption         =   "###"
       BeginProperty Font 
          Name            =   "‚l‚r ƒSƒVƒbƒN"
-         Size            =   10.5
+         Size            =   10.8
          Charset         =   128
          Weight          =   700
          Underline       =   0   'False
@@ -1776,7 +1776,7 @@ Begin VB.Form LS21_SC
       Caption         =   "###"
       BeginProperty Font 
          Name            =   "‚l‚r ƒSƒVƒbƒN"
-         Size            =   10.5
+         Size            =   10.8
          Charset         =   128
          Weight          =   700
          Underline       =   0   'False
@@ -1798,7 +1798,7 @@ Begin VB.Form LS21_SC
       Caption         =   "Œ^’÷ˆ³"
       BeginProperty Font 
          Name            =   "‚l‚r ƒSƒVƒbƒN"
-         Size            =   10.5
+         Size            =   10.8
          Charset         =   128
          Weight          =   700
          Underline       =   0   'False
@@ -1820,7 +1820,7 @@ Begin VB.Form LS21_SC
       Caption         =   "(kg)"
       BeginProperty Font 
          Name            =   "‚l‚r ƒSƒVƒbƒN"
-         Size            =   10.5
+         Size            =   10.8
          Charset         =   128
          Weight          =   700
          Underline       =   0   'False
@@ -1897,7 +1897,7 @@ Begin VB.Form LS21_SC
       Caption         =   "###"
       BeginProperty Font 
          Name            =   "‚l‚r ƒSƒVƒbƒN"
-         Size            =   10.5
+         Size            =   10.8
          Charset         =   128
          Weight          =   700
          Underline       =   0   'False
@@ -1918,7 +1918,7 @@ Begin VB.Form LS21_SC
       Caption         =   "###"
       BeginProperty Font 
          Name            =   "‚l‚r ƒSƒVƒbƒN"
-         Size            =   10.5
+         Size            =   10.8
          Charset         =   128
          Weight          =   700
          Underline       =   0   'False
@@ -1939,7 +1939,7 @@ Begin VB.Form LS21_SC
       Caption         =   "###"
       BeginProperty Font 
          Name            =   "‚l‚r ƒSƒVƒbƒN"
-         Size            =   10.5
+         Size            =   10.8
          Charset         =   128
          Weight          =   700
          Underline       =   0   'False
@@ -1960,7 +1960,7 @@ Begin VB.Form LS21_SC
       Caption         =   "###"
       BeginProperty Font 
          Name            =   "‚l‚r ƒSƒVƒbƒN"
-         Size            =   10.5
+         Size            =   10.8
          Charset         =   128
          Weight          =   700
          Underline       =   0   'False
@@ -1981,7 +1981,7 @@ Begin VB.Form LS21_SC
       Caption         =   "###"
       BeginProperty Font 
          Name            =   "‚l‚r ƒSƒVƒbƒN"
-         Size            =   10.5
+         Size            =   10.8
          Charset         =   128
          Weight          =   700
          Underline       =   0   'False
@@ -2002,7 +2002,7 @@ Begin VB.Form LS21_SC
       Caption         =   "###"
       BeginProperty Font 
          Name            =   "‚l‚r ƒSƒVƒbƒN"
-         Size            =   10.5
+         Size            =   10.8
          Charset         =   128
          Weight          =   700
          Underline       =   0   'False
@@ -2024,7 +2024,7 @@ Begin VB.Form LS21_SC
       Caption         =   "À•W"
       BeginProperty Font 
          Name            =   "‚l‚r ƒSƒVƒbƒN"
-         Size            =   10.5
+         Size            =   10.8
          Charset         =   128
          Weight          =   700
          Underline       =   0   'False
@@ -2046,7 +2046,7 @@ Begin VB.Form LS21_SC
       Caption         =   "(mm)"
       BeginProperty Font 
          Name            =   "‚l‚r ƒSƒVƒbƒN"
-         Size            =   10.5
+         Size            =   10.8
          Charset         =   128
          Weight          =   700
          Underline       =   0   'False
@@ -2123,7 +2123,7 @@ Begin VB.Form LS21_SC
       Caption         =   "###"
       BeginProperty Font 
          Name            =   "‚l‚r ƒSƒVƒbƒN"
-         Size            =   10.5
+         Size            =   10.8
          Charset         =   128
          Weight          =   700
          Underline       =   0   'False
@@ -2144,7 +2144,7 @@ Begin VB.Form LS21_SC
       Caption         =   "###"
       BeginProperty Font 
          Name            =   "‚l‚r ƒSƒVƒbƒN"
-         Size            =   10.5
+         Size            =   10.8
          Charset         =   128
          Weight          =   700
          Underline       =   0   'False
@@ -2165,7 +2165,7 @@ Begin VB.Form LS21_SC
       Caption         =   "###"
       BeginProperty Font 
          Name            =   "‚l‚r ƒSƒVƒbƒN"
-         Size            =   10.5
+         Size            =   10.8
          Charset         =   128
          Weight          =   700
          Underline       =   0   'False
@@ -2186,7 +2186,7 @@ Begin VB.Form LS21_SC
       Caption         =   "###"
       BeginProperty Font 
          Name            =   "‚l‚r ƒSƒVƒbƒN"
-         Size            =   10.5
+         Size            =   10.8
          Charset         =   128
          Weight          =   700
          Underline       =   0   'False
@@ -2207,7 +2207,7 @@ Begin VB.Form LS21_SC
       Caption         =   "###"
       BeginProperty Font 
          Name            =   "‚l‚r ƒSƒVƒbƒN"
-         Size            =   10.5
+         Size            =   10.8
          Charset         =   128
          Weight          =   700
          Underline       =   0   'False
@@ -2228,7 +2228,7 @@ Begin VB.Form LS21_SC
       Caption         =   "###"
       BeginProperty Font 
          Name            =   "‚l‚r ƒSƒVƒbƒN"
-         Size            =   10.5
+         Size            =   10.8
          Charset         =   128
          Weight          =   700
          Underline       =   0   'False
@@ -2249,7 +2249,7 @@ Begin VB.Form LS21_SC
       Caption         =   "ƒRƒƒ“ƒgF"
       BeginProperty Font 
          Name            =   "‚l‚r ƒSƒVƒbƒN"
-         Size            =   11.25
+         Size            =   11.4
          Charset         =   128
          Weight          =   700
          Underline       =   0   'False
@@ -2269,7 +2269,7 @@ Begin VB.Form LS21_SC
       Caption         =   "Label2"
       BeginProperty Font 
          Name            =   "‚l‚r ‚oƒSƒVƒbƒN"
-         Size            =   10.5
+         Size            =   10.8
          Charset         =   128
          Weight          =   700
          Underline       =   0   'False
@@ -2308,7 +2308,7 @@ Begin VB.Form LS21_SC
       Caption         =   "§Œäƒtƒ@ƒCƒ‹–¼F"
       BeginProperty Font 
          Name            =   "‚l‚r ƒSƒVƒbƒN"
-         Size            =   11.25
+         Size            =   11.4
          Charset         =   128
          Weight          =   700
          Underline       =   0   'False
@@ -2720,6 +2720,8 @@ Dim dumlbl14$      ' ¬Œ`ƒVƒ‡ƒbƒg”‚Ì‰æ–Ê•\Ž¦—p@ƒ_ƒ~[190505 ’Ç‰Á
   iflg5Stop = False
   iflg5StopON = False
 '
+    If katamax = 4 Then Label13(3).Visible = False
+    If katamax = 4 Then Label13(4).Visible = False
 '----------------------- ˜A‘±¬Œ`ƒƒCƒ“ƒvƒƒOƒ‰ƒ€
   C870Stop
   ServoON       '/* ƒT[ƒ{‚‚Ž */
@@ -3020,7 +3022,31 @@ ejs1:
 ''    ‰Áˆ³ŽžŠÔ§Œä@‰ºŒÀAãŒÀ‚Ì•\Ž¦       for no uchigawa he idou
 '     Label7(0).Caption = Format(DkatJ(0), "0.0")
      Label7(1).Caption = Format(DkatJ(1), "0.0")
-''
+'
+'  --- Œ^@No.‚Ì•\Ž¦@ˆê‰ñ‘—‚è@---
+    kataNoPnt = kataNoPnt + 1
+    If kataNoPnt > katamax Then kataNoPnt = 0
+'
+    For iii = katamax To 0 Step -1
+        Label13(iii).Caption = kataNoHyj(katamax - iii + kataNoPnt + katamax + 1 + Val(kataNo(10)))
+    Next iii
+'
+    If (i_s_do) < katamax - 1 Then
+        For iii = kataNoPnt + 1 To katamax
+            Label13(iii).Caption = "‹ó"
+        Next iii
+    End If
+'
+'    --- 4st ‚Ì‚Æ‚«‚ÍA‚RC‚S@‘f’Ê‚µ@---
+    If katamax = 4 Then
+        For iii = 3 To 4
+            Label13(iii + 1).Caption = Label13(iii).Caption
+            Label13(iii).Caption = " "
+        Next iii
+    End If
+'
+' ---           Œ^‚m‚D@‚P‰ñ‘—‚èŠ®—¹
+'
 '/* ƒJƒEƒ“ƒ^‚Ö‚Ìo—Íƒ_ƒEƒ“ */
     'InitDat(11) = InitDat(11) - 1   '¬Œ`ƒJƒEƒ“ƒ^ƒgƒEƒ^ƒ‹
     'InitDtSave
@@ -3705,29 +3731,6 @@ caseLtsuka:   ppos = "SC Proc L"        ' hL"’Ê‰ß
                   DoEvents           '  ’ˆÓ@‚±‚ÌDoEvents‚ð@Do@’¼Œã‚ÉˆÚ‚·‚Æ@Œë“®ì‚·‚éB@”À‘—I—¹2‰ñ‘Ò‚¿‚É‚È‚éII
                 Loop
                 '
-'            --- Œ^@No.‚Ì•\Ž¦@ˆê‰ñ‘—‚è@---
-                kataNoPnt = kataNoPnt + 1
-                If kataNoPnt > katamax Then kataNoPnt = 0
-'
-                For iii = katamax To 0 Step -1
-                    Label13(iii).Caption = kataNoHyj(katamax - iii + kataNoPnt + katamax + 1 + Val(kataNo(10)))
-                Next iii
-'
-                If (i_s_do) < katamax - 1 Then
-                    For iii = kataNoPnt + 1 To katamax
-                        Label13(iii).Caption = "‹ó"
-                    Next iii
-                End If
-'
-               '    --- 4st ‚Ì‚Æ‚«‚ÍA‚RC‚S@‘f’Ê‚µ@---
-                If katamax = 4 Then
-                    For iii = 3 To 4
-                        Label13(iii + 1).Caption = Label13(iii).Caption
-                        Label13(iii).Caption = " "
-                    Next iii
-                End If
-'
-' ---           Œ^‚m‚D@‚P‰ñ‘—‚èŠ®—¹
 
               Case "W"    '¬Œ`I—¹
 '                Label2(4).Caption = "¬Œ`I—¹ DO2"
@@ -3966,7 +3969,11 @@ send:
           Command2(5).Caption = "GraphDataSave"
         End If
       End If
-'
+' -----  Coxƒf[ƒ^‚ÌƒfƒBƒXƒN•Û‘¶i–ˆ‰ñj-----@@2019.5.11’Ç‰Á
+'        ¬Œ`ƒTƒCƒNƒ‹‚ÌEND‚Å–ˆ‰ñsave
+      coxDtSet
+      coxDtSave gcoxFldir & gcoxFlName
+'-----
  '/* ƒGƒfƒB‚Æ‚ª‰Ÿ‚³‚ê‚Ä‚¢‚½‚ç@ƒGƒfƒBƒbƒg */
       If FrmMenuFlg = False Then Exit Do            'I—¹‚ª‰Ÿ‚³‚ê‚Ä‚¢‚é‚Æƒƒjƒ…[‚©‚ç”²‚¯‚é‚Æ‚«false
       If EditFlg = True Then 'ƒGƒfƒBƒ^‹N“®

@@ -4026,12 +4026,12 @@ Dim aHenkou$(3)
 Private Sub Command1_Click()
   If katCflag = True Then
           katCflag = False          'â¡à≥éûä‘é©ìÆêßå‰Å@OFF
-          Command1().BackColor = CmndColoff(3)
-          Command1().Caption = "â¡à≥éûä‘êßå‰ OFF"
+          command1().BackColor = CmndColoff(3)
+          command1().Caption = "â¡à≥éûä‘êßå‰ OFF"
     Else
           katCflag = True      'â¡à≥éûä‘é©ìÆêßå‰Å@ON
-          Command1().BackColor = CmndColon(1)    ' on1=red
-          Command1().Caption = "â¡à≥éûä‘êßå‰ ON"
+          command1().BackColor = CmndColon(1)    ' on1=red
+          command1().Caption = "â¡à≥éûä‘êßå‰ ON"
   End If
 '
 End Sub
@@ -4371,6 +4371,12 @@ aHenkou$(3) = "å^ì¸ë÷Ç¶"
 '
 '
 Command2(1).Visible = False
+If katamax = 4 Then
+    Text14(5).Visible = False
+    Text14(6).Visible = False
+    Text17(5).Visible = False
+    Text17(6).Visible = False
+End If
 '
 DispCenter Me
   lFlgDisp = False
@@ -4389,11 +4395,11 @@ DispCenter Me
     End If
   Next i
   If katCflag = False Then
-          Command1().BackColor = CmndColoff(3)
-          Command1().Caption = "â¡à≥éûä‘êßå‰ OFF"
+          command1().BackColor = CmndColoff(3)
+          command1().Caption = "â¡à≥éûä‘êßå‰ OFF"
     Else
-          Command1().BackColor = CmndColon(1)    ' on1=red
-          Command1().Caption = "â¡à≥éûä‘êßå‰ ON"
+          command1().BackColor = CmndColon(1)    ' on1=red
+          command1().Caption = "â¡à≥éûä‘êßå‰ ON"
     End If
 End Sub
 

@@ -291,7 +291,7 @@ Begin VB.Form PGM_Menu
    End
    Begin VB.Label Label1 
       BackColor       =   &H00E0E0E0&
-      Caption         =   "LS-31/32 Ver.190505a"
+      Caption         =   "LS-31/32 Ver.190505b"
       BeginProperty Font 
          Name            =   "ＭＳ Ｐゴシック"
          Size            =   12
@@ -834,6 +834,9 @@ Attribute VB_Exposed = False
 '                                                  型順表示、型No表示、型別の成形数カウントアップ,
 '                                                  30分枠延長'
 '            update: LS31&32-V190505a 2019.5.7 s.f  表示バグ修正
+'            update: LS31&32-V190505b 2019.5.11 s.f  表示バグ修正 katamaxの値により、型順表示、MyEditの表示を消す
+'                                                   型順表示位置（プログラム内の場所）変更。高速ループ内から1回の成形開始時へ移動
+'                                                   Coxデータのディスク保存（毎回）
 '
 '------------------------------------------------------------------------------------------
 '
