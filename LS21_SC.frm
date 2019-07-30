@@ -3724,10 +3724,10 @@ caseLtsuka:   ppos = "SC Proc L"        ' ”L"通過
         Next iii
     End If
 '
-'    --- 4st のときは、３，４　素通し　---
+'    --- 4st のときは、３→５、４→６へ　---
     If katamax = 4 Then
         For iii = 3 To 4
-            Label13(iii + 1).Caption = Label13(iii).Caption
+            Label13(iii + 2).Caption = Label13(iii).Caption
             Label13(iii).Caption = " "
         Next iii
     End If
@@ -3904,8 +3904,8 @@ send:
       Label4(T_keisuCont(1) - 1).Caption = Format(T_keisu(T_keisuCont(1) - 1), "0.000")
 '
 '　 --- /*　現在成形中金型の 型No 確認　20190501 sf  ---
-'　　　　　　　　　'　3は成形室　　label13(3)
-        ikn = katamax - 3 + kataNoPnt + katamax + 1 + Val(kataNo(10))
+'　　　　　　　　　'　2は成形室　　label13(2)
+        ikn = katamax - 2 + kataNoPnt + katamax + 1 + Val(kataNo(10))
 '
         For iii = 1 To 4
             If ikn > katamax Then ikn = ikn - (katamax + 1)
